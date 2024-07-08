@@ -39,8 +39,8 @@ pipeline {
             steps {
                     // Apply the deployment and service files
                     withCredentials([string(credentialsId: 'k8s-token-cred', variable: 'KUBECONFIG')]) {
-                        sh 'kubectl apply -f halo-deployment.yaml'
-                        sh 'kubectl apply -f halo-service.yaml'
+                        sh 'kubectl apply -f halo-deployment.yaml --token=$KUBECONFIG'
+                        sh 'kubectl apply -f halo-service.yaml --token=$KUBECONFIG'
                     }
 
             }
